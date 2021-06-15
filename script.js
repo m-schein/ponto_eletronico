@@ -1,37 +1,30 @@
-var main = function() {
-"use strict";
-jQuery(".comment-input button").on("click", function(event){
- comment();
-});
-jQuery(".input-text").on("keypress", function(event){
-  if(event.keyCode === 13){
-   getTime();
+var main = () => { 
+  
+  "use strict";
+  $(".comment-input button").on("click", (event) => {
+    registerTime();
+  });
+
+  $(".input-text").on("keypress", (event) => {
+    if(event.keyCode === 13){
+    getTime();
+    }
+  });
+
+  Date.prototype.timeNow = function () {
+    return ((this.getHours() < 10)?"0":"") + this.getHours() +":"+ ((this.getMinutes() < 10)?"0":"") + this.getMinutes() +":"+ ((this.getSeconds() < 10)?"0":"") + this.getSeconds();
   }
-});
 
-  function comment(){
+  function registerTime(){
     var today = new Date();
-    var year = today.getFullYear();
-    var ok = today.toDateString(); 
-    console.log(today.toDateString());
-    console.log(year);
-    console.log(typeof ok)
+    var datetime = new Date().timeNow();
+    console.log(datetime)
 
-    var min = today.getUTCMinutes();
-    console.log(min);
-
-    var horas = today.getHours();
-    console.log(horas);
-
-    var hora_agora = horas + ":" + min;
-
-    var $new_comment = $("<p>"), comment_text = $(ok);
-    $new_comment.hide();
-    $new_comment.append('<p class = "data">' + hora_agora +'</p>');
-    $new_comment.fadeIn();
-    $(".comments").append($new_comment);
-    //$(".input-text").val(""); //limpa a caixa de texto
-    
+    var $new_register = $("<h4>"), comment_text = $(datetime);
+    $new_register.hide();
+    $new_register.append('<h4 class = "register">' + datetime + '</h4>');
+    $new_register.fadeIn();
+    $(".registers").append($new_register);
   }
 
 };
